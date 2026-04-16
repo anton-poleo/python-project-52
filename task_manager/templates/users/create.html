@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Регистрация" %}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>{% trans "Создать пользователя" %}</h1>
+
+  {# Сообщения (важно для тестов) #}
+  {% if messages %}
+    {% for message in messages %}
+      <div role="alert" class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    
+    <div class="mb-3">
+      <label for="id_first_name">Имя</label>
+      {{ form.first_name }}
+    </div>
+    
+    <div class="mb-3">
+      <label for="id_last_name">Фамилия</label>
+      {{ form.last_name }}
+    </div>
+    
+    <div class="mb-3">
+      <label for="id_username">Имя пользователя</label>
+      {{ form.username }}
+      {% for error in form.username.errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    </div>
+    
+    <div class="mb-3">
+      <label for="id_password1">Пароль</label>
+      {{ form.password1 }}
+    </div>
+    
+    <div class="mb-3">
+      <label for="id_password2">Подтверждение пароля</label>
+      {{ form.password2 }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      {% trans "Зарегистрироваться" %}
+    </button>
+  </form>
+</div>
+{% endblock %}
