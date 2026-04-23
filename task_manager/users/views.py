@@ -62,14 +62,15 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
         if self.request.user != self.object:
             messages.error(
                 self.request,
-                "Вы не можете удалить" " другого пользователя",
+                "Вы не можете удалить другого пользователя",
             )
             return redirect("users:users")
 
-        if self.object.author_tasks.exists() or self.object.performer_tasks.exists():
+        if (self.object.author_tasks.exists()
+                or self.object.performer_tasks.exists()):
             messages.error(
                 self.request,
-                "Невозможно удалить пользователя," " потому что он используется",
+                "Невозможно удалить пользователя, потому что он используется",
             )
             return redirect("users:users")
 

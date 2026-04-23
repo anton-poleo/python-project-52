@@ -1,6 +1,7 @@
-from django.test import TestCase, Client
-from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
+from django.urls import reverse
+
 from task_manager.models import Label, Status
 from tasks.models import Task
 

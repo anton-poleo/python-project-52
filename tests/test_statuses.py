@@ -1,7 +1,8 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
+
 from task_manager.models import Status
-from django.contrib.auth.models import User
 
 
 class StatusTestCase(TestCase):
